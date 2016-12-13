@@ -1,3 +1,21 @@
+$(document).ready(function() {
+
+    // words come from api/words.js - to get around .json loading issues
+    var magnetArea = $("#MagnetsArea");
+    $.each(words.categories, function (category) {
+        var magnetRow = $("<div/>").addClass("magnet-row");
+
+        words.categories[category].forEach(function (categoryItem) {
+            var text = $("<p/>").text(categoryItem);
+            magnetRow.append($("<div/>").addClass("magnet").append(text));
+        });
+        
+        magnetArea.append(magnetRow);
+    });
+
+});
+
+
 interact('.magnet')
   .draggable({
       // enable inertial throwing
