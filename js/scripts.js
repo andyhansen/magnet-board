@@ -2,14 +2,15 @@ $(document).ready(function() {
 
     // words come from api/words.js - to get around .json loading issues
     var magnetArea = $("#MagnetSidebar");
-    $.each(words.categories, function (category) {
+    $.each(words.categories, function (categoryName, categoryFields) {
         var magnetRow = $("<div/>").addClass("magnet-row");
 
-        magnetRow.append($("<h3/>").text(category))
+        magnetRow.append($("<h3/>").text(categoryName))
 
-        words.categories[category].forEach(function (categoryItem) {
+        var colorForRow = '#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6);
+        categoryFields.forEach(function (categoryItem) {
             var text = $("<p/>").text(categoryItem);
-            magnetRow.append($("<div/>").addClass("magnet").append(text));
+            magnetRow.append($("<div/>").addClass("magnet").append(text).css("backgroundColor", colorForRow));
         });
         
         magnetArea.append(magnetRow);
