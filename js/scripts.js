@@ -1,9 +1,11 @@
 $(document).ready(function() {
 
     // words come from api/words.js - to get around .json loading issues
-    var magnetArea = $("#MagnetsArea");
+    var magnetArea = $("#MagnetSidebar");
     $.each(words.categories, function (category) {
         var magnetRow = $("<div/>").addClass("magnet-row");
+
+        magnetRow.append($("<h3/>").text(category))
 
         words.categories[category].forEach(function (categoryItem) {
             var text = $("<p/>").text(categoryItem);
